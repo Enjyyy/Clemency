@@ -5,7 +5,7 @@ void main(List<String> arguments) {
 
   //Variables
 
-  String? student = stdin.readLineSync();
+  String? student = stdin.readLineSync()!;
   double grade = 0;
   List grades = [];
   String subject;
@@ -20,13 +20,13 @@ void main(List<String> arguments) {
   void Clemency() {
     if ((40 <= grades[j]) && (grades[j] < 50) && (trails < 3)) {
       grades[j] += 10;
-      print('--Added clemency degrees to ${subjects[j]}');
+      print('- Added clemency degrees to ${subjects[j]} -');
     }
   }
 
   void failed() {
     if (grades[j] < 50) {
-      print('$student failed ${subjects[j]}');
+      print('XX $student failed ${subjects[j]}');
     }
   }
 
@@ -69,9 +69,9 @@ void main(List<String> arguments) {
   }
 
   if (trails >= 3) {
-    print('\n$student failed the year');
+    print('\n$student failed the year due to low grades in $trails subjects');
   } else {
     print(
-        '\n$student passed the year with a percentage of ${(total / (100 * grades.length)) * 100} \% \n total grade is : $total / ${100 * grades.length}');
+        '\n$student passed the year with a percentage of ${(total / (100 * grades.length)) * 100} \% \ntotal grade is : $total / ${100 * grades.length}');
   }
 }
