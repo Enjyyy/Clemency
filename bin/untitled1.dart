@@ -11,6 +11,7 @@ void main(List<String> arguments) {
   String subject;
   List subjects = [];
   int trials = 0;
+  int failedSubject = 0;
   double total = 0;
   int i = 0;
   int j = 0;
@@ -26,7 +27,7 @@ void main(List<String> arguments) {
 
   void failed() {
     if (grades[j] < 50) {
-      print('XX $student failed ${subjects[j]}');
+      print('XX $student failed ${subjects[j]} XX');
     }
   }
 
@@ -45,6 +46,9 @@ void main(List<String> arguments) {
     subjects.add(subject);
     print('enter $subject\'s grade');
     grade = double.parse(stdin.readLineSync()!);
+    if ((grade < 40) || (trials >= 3)) {
+      failedSubject++;
+    }
     if (grade < 50) {
       trials++;
     }
@@ -64,14 +68,15 @@ void main(List<String> arguments) {
 
   for (j = 0; j < 10; j++) {
     Clemency();
-    succeeded();
     failed();
+    succeeded();
   }
 
   if (trials >= 3) {
-    print('\n$student failed the year due to low grades in $trials subjects');
+    print(
+        '\n$student failed the year due to low grades in $trials subjects and he has to retake $failedSubject courses');
   } else {
     print(
-        '\n$student passed the year with a percentage of ${(total / (100 * grades.length)) * 100} \% \ntotal grade is : $total / ${100 * grades.length}');
+        '\n$student passed the year with a percentage of ${(total / (100 * grades.length)) * 100} \% and he has to retake $failedSubject course(s)\ntotal grade is : $total / ${100 * grades.length} ');
   }
 }
