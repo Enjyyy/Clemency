@@ -41,7 +41,7 @@ void main(List<String> arguments) {
 
   //Getting data
   for (i = 0; i < 10; i++) {
-    print('enter subject\'s name (or enter k if you\'re done)');
+    print('enter subject\'s name');
     subject = stdin.readLineSync()!;
     subjects.add(subject);
     print('enter $subject\'s grade');
@@ -56,8 +56,6 @@ void main(List<String> arguments) {
       }
       grades.add(grade);
       total += grade;
-    } else if (subject == 'k' || (subject == 'K')) {
-      break;
     } else {
       i--;
       print('Please enter a valid grade');
@@ -77,9 +75,9 @@ void main(List<String> arguments) {
 
   if (trials >= 3) {
     print(
-        '\n$student failed the year due to low grades in $trials subjects and he has to retake $trials courses');
+        '\n$student failed the year due to low grades in $trials subjects and (s)he has to retake $trials courses');
   } else {
     print(
-        '\n$student passed the year with a percentage of ${(total / (100 * grades.length)) * 100} \% and he has to retake $failedSubject course(s)\ntotal grade is : $total / ${100 * grades.length} ');
+        '\n$student passed the year with a percentage of ${(total / (100 * grades.length)) * 100} \% and (s)he has to retake $failedSubject course(s)\ntotal grade is : $total / ${100 * grades.length} ');
   }
 }
