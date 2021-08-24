@@ -18,7 +18,7 @@ void main(List<String> arguments) {
   //----Checking methods----
 
   void Clemency() {
-    if ((40 <= grades[j]) && (grades[j] < 50)) {
+    if ((40 <= grades[j]) && (grades[j] < 50) && (trails < 3)) {
       grades[j] += 10;
       print('--Added clemency degrees to ${subjects[j]}');
     }
@@ -63,9 +63,7 @@ void main(List<String> arguments) {
   print('\n$student has low grades in $trails subject(s)\n');
 
   for (j = 0; j < 10; j++) {
-    if (trails < 3) {
-      Clemency();
-    }
+    Clemency();
     succeeded();
     failed();
   }
@@ -74,6 +72,6 @@ void main(List<String> arguments) {
     print('\n$student failed the year');
   } else {
     print(
-        '\n$student passed the year with a percentage of ${(total / (100 * grades.length)) * 100} \%');
+        '\n$student passed the year with a percentage of ${(total / (100 * grades.length)) * 100} \% \n total grade is : $total / ${100 * grades.length}');
   }
 }
