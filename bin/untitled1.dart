@@ -10,7 +10,7 @@ void main(List<String> arguments) {
   List grades = [];
   String subject;
   List subjects = [];
-  int trails = 0;
+  int trials = 0;
   double total = 0;
   int i = 0;
   int j = 0;
@@ -18,7 +18,7 @@ void main(List<String> arguments) {
   //----Checking methods----
 
   void Clemency() {
-    if ((40 <= grades[j]) && (grades[j] < 50) && (trails < 3)) {
+    if ((40 <= grades[j]) && (grades[j] < 50) && (trials < 3)) {
       grades[j] += 10;
       print('- Added clemency degrees to ${subjects[j]} -');
     }
@@ -46,7 +46,7 @@ void main(List<String> arguments) {
     print('enter $subject\'s grade');
     grade = double.parse(stdin.readLineSync()!);
     if (grade < 50) {
-      trails++;
+      trials++;
     }
     if (grade > 100) {
       i--;
@@ -60,7 +60,7 @@ void main(List<String> arguments) {
   //final results & analytics
 
   print('\n$student\'s grades are : $grades');
-  print('\n$student has low grades in $trails subject(s)\n');
+  print('\n$student has low grades in $trials subject(s)\n');
 
   for (j = 0; j < 10; j++) {
     Clemency();
@@ -68,8 +68,8 @@ void main(List<String> arguments) {
     failed();
   }
 
-  if (trails >= 3) {
-    print('\n$student failed the year due to low grades in $trails subjects');
+  if (trials >= 3) {
+    print('\n$student failed the year due to low grades in $trials subjects');
   } else {
     print(
         '\n$student passed the year with a percentage of ${(total / (100 * grades.length)) * 100} \% \ntotal grade is : $total / ${100 * grades.length}');
