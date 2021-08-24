@@ -11,6 +11,7 @@ void main(List<String> arguments) {
   String subject;
   List subjects = [];
   int trails = 0;
+  double total = 0;
   int i = 0;
   int j = 0;
 
@@ -19,7 +20,7 @@ void main(List<String> arguments) {
   void Clemency() {
     if ((40 <= grades[j]) && (grades[j] < 50)) {
       grades[j] += 10;
-      print('^^Added clemency degrees to ${subjects[j]}');
+      print('--Added clemency degrees to ${subjects[j]}');
     }
   }
 
@@ -47,7 +48,13 @@ void main(List<String> arguments) {
     if (grade < 50) {
       trails++;
     }
-    grades.add(grade);
+    if (grade > 100) {
+      i--;
+      print('Please enter a valid grade');
+    } else {
+      grades.add(grade);
+      total += grade;
+    }
   }
 
   //final results & analytics
@@ -66,6 +73,7 @@ void main(List<String> arguments) {
   if (trails >= 3) {
     print('\n$student failed the year');
   } else {
-    print('\n$student Passed the year');
+    print(
+        '\n$student passed the year with a percentage of ${(total / (100 * grades.length)) * 100} \%');
   }
 }
