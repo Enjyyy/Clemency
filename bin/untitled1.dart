@@ -1,11 +1,16 @@
 import 'dart:io';
 
 void main(List<String> arguments) {
+  //Starting the program
+
   print('enter student\'s name');
+  String? student = stdin.readLineSync()!;
+
+  print('enter number of subjects');
+  int numOfSubjects = int.parse(stdin.readLineSync()!);
 
   //Variables
 
-  String? student = stdin.readLineSync()!;
   double grade = 0;
   List grades = [];
   String subject;
@@ -21,26 +26,42 @@ void main(List<String> arguments) {
   void Clemency() {
     if ((40 <= grades[j]) && (grades[j] < 50) && (trials < 3)) {
       grades[j] += 10;
-      print('- Added clemency degrees to ${subjects[j]} -');
+      print('\t  - Added clemency degrees to ${subjects[j]}');
     }
   }
 
   void failed() {
     if (grades[j] < 50) {
-      print('XX $student failed ${subjects[j]} XX');
+      print('\t  - $student failed ${subjects[j]}');
     }
   }
 
   void succeeded() {
     if (grades[j] >= 50) {
-      print('$student passed ${subjects[j]}');
+      print('\t  - $student passed ${subjects[j]}');
+    }
+  }
+
+  String grading(double k) {
+    if ((k >= 85) && (k <= 100)) {
+      return 'A | Excellent';
+    } else if ((k >= 75) && (k < 85)) {
+      return 'B | Very good';
+    } else if ((k >= 65) && (k < 75)) {
+      return 'C | good';
+    } else if ((k >= 50) && (k < 65)) {
+      return 'D | Pass';
+    } else if ((k >= 30) && (k < 50)) {
+      return 'F | Weak';
+    } else {
+      return 'F | Very weak';
     }
   }
 
   //----implementing----
 
   //Getting data
-  for (i = 0; i < 10; i++) {
+  for (i = 0; i < numOfSubjects; i++) {
     print('enter subject\'s name');
     subject = stdin.readLineSync()!;
     subjects.add(subject);
@@ -48,7 +69,7 @@ void main(List<String> arguments) {
     grade = double.parse(stdin.readLineSync()!);
 
     if (grade < 100) {
-      if ((grade < 40) || (trials >= 3)) {
+      if (grade < 40) {
         failedSubject++;
       }
       if (grade < 50) {
@@ -64,20 +85,24 @@ void main(List<String> arguments) {
 
   //final results & analytics
 
-  print('\n$student\'s grades are : $grades');
-  print('\n$student has low grades in $trials subject(s)\n');
-
-  for (j = 0; j < 10; j++) {
+  print('\n$student\'s marks are :- \n');
+  print('---------------------------');
+  for (j = 0; j < numOfSubjects; j++) {
+    print('${subjects[j]} : ${grades[j]}/100 | ${grading(grades[j])}');
+    print('\t notes:');
     Clemency();
     failed();
     succeeded();
+    print('---------------------------');
   }
+  print('\n$student has low grades in $trials subject(s)');
 
   if (trials >= 3) {
     print(
-        '\n$student failed the year due to low grades in $trials subjects and (s)he has to retake $trials courses');
+        '\n$student failed the year due to low grades in $trials subjects and (s)he has to retake the year');
   } else {
     print(
-        '\n$student passed the year with a percentage of ${(total / (100 * grades.length)) * 100} \% and (s)he has to retake $failedSubject course(s)\ntotal grade is : $total / ${100 * grades.length} ');
+        '\n$student passed the year with a percentage of ${((total / (100 * grades.length)) * 100).toStringAsFixed(2)}\% and (s)he has to retake $failedSubject course(s)'
+        '\ntotal grade is : $total / ${100 * grades.length} , Grade description : ${grading(((total / (100 * grades.length)) * 100))}');
   }
 }
